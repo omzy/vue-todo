@@ -5,25 +5,29 @@
     <form @submit.prevent="submitForm" autocomplete="off">
       <div class="field">
         <label for="todo-name">Name</label>
-        <input type="text" id="todo-name" v-model="name" required>
+        <input type="text" id="todo-name" v-model="name">
         <button type="submit">Add</button>
       </div>
     </form>
 
     <h2>Current To Do's</h2>
 
+    <div class="flash" v-bind:class="[ error ? 'error' : 'success' ]" v-show="message">{{ message }}</div>
+
     <table v-if="todos.length">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Actions</th>
+          <th class="name">Name</th>
+          <th class="actions">Actions</th>
         </tr>
       </thead>
 
       <tbody>
         <tr v-for="todo in todos" v-bind:key="todo">
-          <td>{{ todo }}</td>
-          <td>&nbsp;</td>
+          <td class="name">{{ todo }}</td>
+          <td class="actions">
+            <button type="button" @click="removeTask(todo)">Remove</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -36,15 +40,37 @@
 export default {
   data() {
     return {
-      name: '',
+      name: null,
+      message: null,
+      error: false,
       todos: []
     }
   },
   methods: {
     submitForm: function (event) {
-      this.todos.push(this.name)
-      this.name = '';
-      event.target.reset()
+      if (this.name !== null) {
+        if (!this.todos.includes(this.name)) {
+          this.todos.push(this.name)
+          this.name = null;
+          event.target.reset()
+
+          this.error = false;
+          this.message = 'To do successfully added!'
+        } else {
+          this.error = true;
+          this.message = 'To do already exists!'
+        }
+      } else {
+        this.error = true;
+        this.message = 'To do cannot be blank!'
+      }
+    },
+    removeTask: function (todo) {
+      const todoIndex = this.todos.indexOf(todo)
+      this.todos.splice(todoIndex, 1)
+
+      this.error = false;
+      this.message = 'To do successfully deleted!'
     }
   }
 }
@@ -59,6 +85,21 @@ export default {
 
   p {
     margin-bottom: 25px;
+  }
+
+  .flash {
+    padding: 15px;
+    margin-bottom: 25px;
+    color: white;
+    width: 423px;
+  }
+
+  .flash.success {
+    background-color: green;
+  }
+
+  .flash.error {
+    background-color: red;
   }
 
   form {
@@ -101,7 +142,6 @@ export default {
   table {
     border: 1px solid #ccc;
     border-collapse: collapse;
-    width: 100%;
   }
 
   table th, table td {
@@ -112,5 +152,24 @@ export default {
   table th {
     text-align: left;
     font-weight: bold;
+  }
+
+  table .name {
+    width: 332px;
+  }
+
+  table .actions {
+    width: 50px;
+  }
+
+  table .actions button {
+    width: 70px;
+    height: 32px;
+    cursor: pointer;
+    font-family: Arial, serif;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    color: #636b6f;
   }
 </style>

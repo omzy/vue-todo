@@ -8,7 +8,12 @@
 </template>
 
 <script>
+import ToDo from './components/ToDo.vue'
+
 export default {
+  components: {
+    'todos' : ToDo
+  },
   data() {
     return {
       title: 'To Do List App'
