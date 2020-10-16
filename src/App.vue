@@ -2,7 +2,7 @@
   <div id="app">
     <main>
       <h1>{{ title }}</h1>
-      <todos></todos>
+      <todo></todo>
     </main>
   </div>
 </template>
@@ -12,7 +12,7 @@ import ToDo from './components/ToDo.vue'
 
 export default {
   components: {
-    'todos' : ToDo
+    'todo' : ToDo
   },
   data() {
     return {
