@@ -63,4 +63,8 @@ export default {
     margin-bottom: 35px;
     font-size: 36px;
   }
+
+  p {
+    margin-bottom: 25px;
+  }
 </style>

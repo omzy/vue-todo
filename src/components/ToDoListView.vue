@@ -24,9 +24,9 @@
 
 <script>
 export default {
-  data() {
-    return {
-      todos: []
+  props: {
+    todos: {
+      type: Array
     }
   },
   methods: {
@@ -34,8 +34,7 @@ export default {
       const todoIndex = this.todos.indexOf(todo)
       this.todos.splice(todoIndex, 1)
 
-      this.error = false
-      this.message = 'To do successfully deleted!'
+      this.$emit('showFlash', ['success', 'To do successfully deleted!'])
     }
   }
 }
