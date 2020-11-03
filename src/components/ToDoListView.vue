@@ -12,7 +12,7 @@
         <tr v-for="todo in todos" v-bind:key="todo">
           <td class="name">{{ todo }}</td>
           <td class="actions">
-            <button type="button" @click="removeTask(todo)">Remove</button>
+            <button type="button" v-on:click="removeTask(todo)">Remove</button>
           </td>
         </tr>
       </tbody>
