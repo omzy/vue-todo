@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import App from './App.vue'
-import SubHeading from "@/components/SubHeading"
+import App from '@/App.vue'
+import SubHeading from '@/components/SubHeading'
 
 Vue.component('sub-heading', SubHeading)
 

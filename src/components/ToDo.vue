@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import ToDoForm from "@/components/ToDoForm";
-import ToDoListView from "@/components/ToDoListView";
+import ToDoForm from '@/components/ToDoForm';
+import ToDoListView from '@/components/ToDoListView';
 
 export default {
   components: {

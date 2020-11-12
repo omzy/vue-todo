@@ -27,9 +27,9 @@
 </template>
 
 <script>
-import Home from './components/Home.vue'
-import ToDo from './components/ToDo.vue'
-import Flash from "@/components/Flash";
+import Home from '@/components/Home'
+import ToDo from '@/components/ToDo'
+import Flash from '@/components/Flash'
 
 export default {
   components: {
