@@ -14,17 +14,18 @@ export default {
 
 <style scoped>
   .flash {
-    padding: 15px;
-    margin-bottom: 25px;
+    position: fixed;
+    top: 0;
+    padding: 15px 100px;
     color: white;
-    width: 423px;
+    text-align: center;
   }
 
   .flash.success {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.7);
   }
 
   .flash.error {
-    background-color: red;
+    background-color: rgba(255, 0 ,0, 0.7);
   }
 </style>

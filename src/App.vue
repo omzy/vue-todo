@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <Flash v-bind:flashData="flashData"></Flash>
+
     <div id="container">
       <header>
         <h1>{{ title }}</h1>
@@ -13,8 +15,8 @@
       </header>
 
       <main>
-        <Home v-if="toggleComponent('home')"></Home>
-        <ToDo v-if="toggleComponent('todo')"></ToDo>
+        <Home v-if="isActivePage('home')"></Home>
+        <ToDo v-if="isActivePage('todo')" v-on:showFlash="showFlash"></ToDo>
       </main>
 
       <footer>
@@ -27,11 +29,13 @@
 <script>
 import Home from './components/Home.vue'
 import ToDo from './components/ToDo.vue'
+import Flash from "@/components/Flash";
 
 export default {
   components: {
     Home,
-    ToDo
+    ToDo,
+    Flash
   },
   data() {
     return {
@@ -40,15 +44,22 @@ export default {
       pages: {
         home: 'Home',
         todo: 'To Do'
-      }
+      },
+      flashData: {}
     }
   },
   methods: {
     setActivePage: function (page) {
       this.activePage = page
     },
-    toggleComponent: function (name) {
+    isActivePage: function (name) {
       return this.activePage === name
+    },
+    showFlash: function (data) {
+      this.flashData = {
+        status: data[0],
+        message: data[1]
+      }
     }
   }
 }

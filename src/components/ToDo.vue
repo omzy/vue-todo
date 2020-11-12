@@ -2,31 +2,26 @@
   <div class="main">
     <h2>Add a New To Do</h2>
 
-    <ToDoForm v-on:addToDo="updateToDoList" v-on:showFlash="showFlashMessage" ref="toDoForm"></ToDoForm>
+    <ToDoForm v-on:addToDo="updateToDoList" v-on:showFlash="showFlash" ref="toDoForm"></ToDoForm>
 
     <h2>Current To Do's</h2>
 
-    <Flash v-bind:flashData="flashData"></Flash>
-
-    <ToDoListView v-bind:todos="todos" v-on:showFlash="showFlashMessage"></ToDoListView>
+    <ToDoListView v-bind:todos="todos" v-on:showFlash="showFlash"></ToDoListView>
   </div>
 </template>
 
 <script>
 import ToDoForm from "@/components/ToDoForm";
 import ToDoListView from "@/components/ToDoListView";
-import Flash from "@/components/Flash";
 
 export default {
   components: {
     ToDoForm,
-    ToDoListView,
-    Flash
+    ToDoListView
   },
   data() {
     return {
-      todos: [],
-      flashData: {}
+      todos: []
     }
   },
   methods: {
@@ -38,11 +33,8 @@ export default {
         this.$refs.toDoForm.success = false
       }
     },
-    showFlashMessage: function (data) {
-      this.flashData = {
-        status: data[0],
-        message: data[1]
-      }
+    showFlash: function (data) {
+      this.$emit('showFlash', data)
     }
   }
 }

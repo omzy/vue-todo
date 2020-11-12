@@ -64,6 +64,11 @@ export default {
     color: #636b6f;
   }
 
+  .field input:focus {
+    outline: none;
+    border-color: #333;
+  }
+
   .field button {
     width: 70px;
     height: 32px;
@@ -73,5 +78,10 @@ export default {
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     color: #636b6f;
+  }
+
+  .field button:focus {
+    outline: none;
+    border-color: #333;
   }
 </style>
