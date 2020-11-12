@@ -9,10 +9,10 @@
       </thead>
 
       <tbody>
-        <tr v-for="todo in todos" v-bind:key="todo">
-          <td class="name">{{ todo }}</td>
+        <tr v-for="(item, index) in todos" v-bind:key="index">
+          <td class="name">{{ item }}</td>
           <td class="actions">
-            <button type="button" v-on:click="removeTask(todo)">Remove</button>
+            <button type="button" v-on:click="removeTask(index)">Remove</button>
           </td>
         </tr>
       </tbody>

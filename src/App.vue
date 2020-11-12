@@ -5,19 +5,16 @@
         <h1>{{ title }}</h1>
         <nav>
           <ul>
-            <li v-bind:class="{ active: activePage === 'home' }">
-              <a href="#" v-on:click.prevent="setActivePage('home')">Home</a>
-            </li>
-            <li v-bind:class="{ active: activePage === 'todo' }">
-              <a href="#" v-on:click.prevent="setActivePage('todo')">To Do</a>
+            <li v-for="(item, index) in pages" v-bind:key="index" v-bind:class="{ active: activePage === index }">
+              <a href="#" v-on:click.prevent="setActivePage(index)">{{ item }}</a>
             </li>
           </ul>
         </nav>
       </header>
 
       <main>
-        <Home v-show="toggleComponent('home')"></Home>
-        <ToDo v-show="toggleComponent('todo')"></ToDo>
+        <Home v-if="toggleComponent('home')"></Home>
+        <ToDo v-if="toggleComponent('todo')"></ToDo>
       </main>
 
       <footer>
@@ -39,7 +36,11 @@ export default {
   data() {
     return {
       title: 'To Do List App',
-      activePage: 'home'
+      activePage: 'home',
+      pages: {
+        home: 'Home',
+        todo: 'To Do'
+      }
     }
   },
   methods: {
