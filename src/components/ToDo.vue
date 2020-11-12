@@ -1,10 +1,10 @@
 <template>
   <div class="main">
-    <h2>Add a New To Do</h2>
+    <sub-heading>Add a New To Do</sub-heading>
 
     <ToDoForm v-on:addToDo="updateToDoList" v-on:showFlash="showFlash" ref="toDoForm"></ToDoForm>
 
-    <h2>Current To Do's</h2>
+    <sub-heading>Current To Do's</sub-heading>
 
     <ToDoListView v-bind:todos="todos" v-on:showFlash="showFlash"></ToDoListView>
   </div>
@@ -39,11 +39,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  h2 {
-    color: green;
-    font-size: 24px;
-    margin-bottom: 25px;
-  }
-</style>
